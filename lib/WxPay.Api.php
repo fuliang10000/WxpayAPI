@@ -50,9 +50,7 @@ class WxPayApi
 		
 		$inputObj->SetAppid(WxPayConfig::APPID);//公众账号ID
 		$inputObj->SetMch_id(WxPayConfig::MCHID);//商户号
-//		$inputObj->SetSpbill_create_ip($_SERVER['REMOTE_ADDR']);//终端ip
-		$inputObj->SetSpbill_create_ip('0.0.0.0');//终端ip
-		//$inputObj->SetSpbill_create_ip("1.1.1.1");
+		$inputObj->SetSpbill_create_ip(WxPayConfig::CURL_PROXY_HOST);//终端ip
 		$inputObj->SetNonce_str(self::getNonceStr());//随机字符串
 		
 		//签名
