@@ -26,6 +26,7 @@ class WxPayConfig
 	const MCHID = '1497843582';
 	const KEY = 'wDVB8VAluxu2OUFfGe1XSKPfpFcKO18s';
 	const APPSECRET = '5f8c99e693c2e823e51d1487433fb519';
+	const NOTIFY_URL = 'http://120.79.184.17/WxpayAPI/example/notify.php';
 	
 	//=======【证书路径设置】=====================================
 	/**
