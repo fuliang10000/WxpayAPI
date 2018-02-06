@@ -39,7 +39,6 @@ $input->SetGoods_tag("test");
 $input->SetNotify_url("http://paysdk.weixin.qq.com/example/notify.php");
 $input->SetTrade_type("NATIVE");
 $input->SetProduct_id("123456789");
-echo 123;die;
 $result = $notify->GetPayUrl($input);
 $url2 = $result["code_url"];
 ?>
