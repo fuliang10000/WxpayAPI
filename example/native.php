@@ -18,7 +18,6 @@ require_once 'log.php';
  * 6、在支付成功通知中需要查单确认是否真正支付成功（见：notify.php）
  */
 $notify = new NativePay();
-echo 123;die;
 //$url1 = $notify->GetPrePayUrl("123456789");
 
 //模式二
@@ -40,6 +39,7 @@ $input->SetGoods_tag("test");
 $input->SetNotify_url("http://paysdk.weixin.qq.com/example/notify.php");
 $input->SetTrade_type("NATIVE");
 $input->SetProduct_id("123456789");
+echo 123;die;
 $result = $notify->GetPayUrl($input);
 $url2 = $result["code_url"];
 ?>
