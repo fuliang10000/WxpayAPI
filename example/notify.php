@@ -1,13 +1,7 @@
 <?php
-
 ini_set('date.timezone','Asia/Shanghai');
 error_reporting(E_ERROR);
 
-require_once "../conn/conn.php";
-$postStr = file_get_contents('php://input');
-$sql = "INSERT INTO `access_token` VALUES (null,'{$postStr}',0,0)";
-mysqli_query($this->_conn,$sql);
-die;
 require_once "../lib/WxPay.Api.php";
 require_once '../lib/WxPay.Notify.php';
 require_once 'log.php';

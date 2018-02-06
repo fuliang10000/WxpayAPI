@@ -49,7 +49,7 @@ class WxPayNotify extends WxPayNotifyReply
 	 * 
 	 * notify回调方法，该方法中需要赋值需要输出的参数,不可重写
 	 * @param array $data
-	 * @return true回调出来完成不需要继续回调，false回调处理未完成需要继续回调
+	 * @return true回调处理完成不需要继续回调，false回调处理未完成需要继续回调
 	 */
 	final public function NotifyCallBack($data)
 	{
