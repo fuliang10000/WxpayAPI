@@ -1,6 +1,5 @@
 <?php
 header('Content-type: text/html; charset=utf-8');
-echo 11;die;
 ini_set('date.timezone','Asia/Shanghai');
 //error_reporting(E_ERROR);
 
