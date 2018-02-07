@@ -445,12 +445,6 @@ class WxPayApi
 	 */
 	public static function replyNotify($xml)
 	{
-		header('Content-Type:text/html;charset=utf-8');
-		$conn = mysqli_connect('120.79.184.17','root','root', 'wxdevelopment',3306);
-		mysqli_query($conn,'set names utf8');
-		$time = time();
-		$sql = "INSERT INTO `access_token` VALUES (null, '{$xml}', 0, '{$time}' , 1)";
-		mysqli_query($conn, $sql);
 		echo $xml;
 	}
 	
