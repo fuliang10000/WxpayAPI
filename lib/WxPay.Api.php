@@ -412,12 +412,6 @@ class WxPayApi
 	{
 		//获取通知的数据
 		$xml = file_get_contents('php://input');
-		header('Content-Type:text/html;charset=utf-8');
-		$conn = mysqli_connect('120.79.184.17','root','root', 'wxdevelopment',3306);
-		mysqli_query($conn,'set names utf8');
-		$time = time();
-		$sql = "INSERT INTO `access_token` VALUES (null, '{$xml}', 0, '{$time}' , 1)";
-		mysqli_query($conn, $sql);
 		//如果返回成功则验证签名
 		try {
 			$result = WxPayResults::Init($xml);
