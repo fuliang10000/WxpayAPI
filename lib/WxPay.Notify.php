@@ -74,8 +74,9 @@ class WxPayNotify extends WxPayNotifyReply
 	final private function ReplyNotify($needSign = true)
 	{
 		//如果需要签名
-		if($needSign == true && 
-			$this->GetReturn_code($return_code) == "SUCCESS")
+		if($needSign == true &&
+			// $return_code
+			$this->GetReturn_code() == "SUCCESS")
 		{
 			$this->SetSign();
 		}
