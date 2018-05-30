@@ -46,7 +46,8 @@ $url2 = $result["code_url"];
 if ($url2) {
     $db = DB::getInstance();
     $sql = "INSERT INTO `wxpay` VALUES ('', '{$outTradeNo}', '{$amount}', 0)";
-    $db->query($sql);
+    $result = $db->query($sql);
+    var_dump($result);die;
 }
 ?>
 
