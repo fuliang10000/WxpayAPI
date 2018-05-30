@@ -52,7 +52,7 @@ class DB
     {
         $result = mysqli_query($this->link, $sql);
 
-        return $this->link;
+        return $result;
     }
 
     /**

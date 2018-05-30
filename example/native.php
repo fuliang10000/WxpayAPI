@@ -45,9 +45,8 @@ $result = $notify->GetPayUrl($input);
 $url2 = $result["code_url"];
 if ($url2) {
     $db = DB::getInstance();
-    $sql = "INSERT INTO `wxpay` VALUES ('', '{$outTradeNo}', '{$amount}', 0)";
+    $sql = "INSERT INTO `wxpay` (`out_trade_no`, `amount`) VALUES ('{$outTradeNo}', '{$amount}')";
     $result = $db->query($sql);
-    var_dump($result);die;
 }
 ?>
 
