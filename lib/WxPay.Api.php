@@ -61,7 +61,6 @@ class WxPayApi
 
 			$startTimeStamp = self::getMillisecond();//请求开始时间
 			$response = self::postXmlCurl($xml, $url, false, $timeOut);
-			var_dump($response);die;
 			$result = WxPayResults::Init($response);
 			self::reportCostTime($url, $startTimeStamp, $result);//上报请求花费时间
 		} catch (WxPayException $e) {
@@ -561,6 +560,8 @@ class WxPayApi
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
 		//运行curl
 		$data = curl_exec($ch);
+		var_dump($data);die;
+
 		//返回结果
 		if($data){
 			curl_close($ch);
