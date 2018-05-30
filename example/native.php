@@ -43,6 +43,7 @@ $input->SetTrade_type("NATIVE");
 $input->SetProduct_id("123456789");
 $result = $notify->GetPayUrl($input);
 $url2 = $result["code_url"];
+var_dump($url2);die;
 if ($url2) {
     $db = DB::getInstance();
     $sql = "INSERT INTO `wxpay` VALUES ('', '{$outTradeNo}', '{$amount}', 0)";
