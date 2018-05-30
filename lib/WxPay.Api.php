@@ -559,9 +559,8 @@ class WxPayApi
 		curl_setopt($ch, CURLOPT_POST, TRUE);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
 		//运行curl
+		echo 11;die;
 		$data = curl_exec($ch);
-		var_dump($data);die;
-
 		//返回结果
 		if($data){
 			curl_close($ch);
