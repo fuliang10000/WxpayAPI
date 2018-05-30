@@ -5,6 +5,7 @@ error_reporting(E_ERROR);
 require_once "../lib/WxPay.Api.php";
 require_once '../lib/WxPay.Notify.php';
 require_once 'log.php';
+require_once '../conn/DB.class.php';
 
 //初始化日志
 $logHandler= new CLogFileHandler("../logs/".date('Y-m-d').'.log');

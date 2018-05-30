@@ -31,10 +31,11 @@ $notify = new NativePay();
  */
 $input = new WxPayUnifiedOrder();
 $outTradeNo = WxPayConfig::MCHID.date("YmdHis") . rand(1000, 9999);
+$amount = '0.01';
 $input->SetBody("test");
 $input->SetAttach("test");
 $input->SetOut_trade_no($outTradeNo);
-$input->SetTotal_fee("1");
+$input->SetTotal_fee($amount * 100);
 $input->SetTime_start(date("YmdHis"));
 $input->SetTime_expire(date("YmdHis", time() + 600));
 $input->SetGoods_tag("test");
@@ -43,6 +44,11 @@ $input->SetTrade_type("NATIVE");
 $input->SetProduct_id("123456789");
 $result = $notify->GetPayUrl($input);
 $url2 = $result["code_url"];
+if ($url2) {
+    $db = DB::getInstance();
+    $sql = "INSERT INTO `wxpay` VALUES ('', '{$outTradeNo}', '{$amount}', 0)";
+    $db->query($sql);
+}
 ?>
 
 <html>

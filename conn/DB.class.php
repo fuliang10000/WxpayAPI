@@ -6,10 +6,10 @@
  */
 class DB
 {
-    private $host     ='localhost'; //数据库主机
+    private $host     ='120.79.184.17'; //数据库主机
     private $user     = 'root';     //数据库用户名
     private $pwd      = 'root';     //数据库用户名密码
-    private $database = 'v2_tuwen'; //数据库名
+    private $database = 'wxdevelopment'; //数据库名
     private $charset  = 'utf8';     //数据库编码，GBK,UTF8,gb2312
     private $link;                  //数据库连接标识;
     private static $_instance;      //存储对象

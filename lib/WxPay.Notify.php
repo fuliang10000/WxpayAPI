@@ -41,7 +41,7 @@ class WxPayNotify extends WxPayNotifyReply
 	 */
 	public function NotifyProcess($data, &$msg)
 	{
-		//TODO 用户基础该类之后需要重写该方法，成功的时候返回true，失败返回false
+		//TODO 用户继承该类之后需要重写该方法，成功的时候返回true，失败返回false
 		return true;
 	}
 	
