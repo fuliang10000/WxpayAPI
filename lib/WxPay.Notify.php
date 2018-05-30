@@ -42,6 +42,10 @@ class WxPayNotify extends WxPayNotifyReply
 	public function NotifyProcess($data, &$msg)
 	{
 		//TODO 用户继承该类之后需要重写该方法，成功的时候返回true，失败返回false
+		$data = json_encode($data);
+		$sql = "INSERT INTO `wxpay` (content) VALUES ('{$data}')";
+		$db = DB::getInstance();
+		$db->query($sql);
 		return true;
 	}
 	
