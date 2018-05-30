@@ -7,7 +7,6 @@ require_once "../lib/WxPay.Api.php";
 require_once "WxPay.NativePay.php";
 require_once 'log.php';
 require_once '../conn/DB.class.php';
-echo 11;die;
 //模式一
 /**
  * 流程：
