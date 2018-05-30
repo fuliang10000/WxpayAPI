@@ -41,9 +41,10 @@ $input->SetGoods_tag("test");
 $input->SetNotify_url("http://120.79.184.17/WxpayAPI/example/notify.php");
 $input->SetTrade_type("NATIVE");
 $input->SetProduct_id("123456789");
+var_dump(111);die;
+
 $result = $notify->GetPayUrl($input);
 $url2 = $result["code_url"];
-var_dump($url2);die;
 if ($url2) {
     $db = DB::getInstance();
     $sql = "INSERT INTO `wxpay` VALUES ('', '{$outTradeNo}', '{$amount}', 0)";
