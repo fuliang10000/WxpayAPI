@@ -51,3 +51,7 @@ class PayNotifyCallBack extends WxPayNotify
 Log::DEBUG("begin notify");
 $notify = new PayNotifyCallBack();
 $notify->Handle(false);
+//		$data = json_encode($result);
+$sql = "INSERT INTO `wxpay` (`content`) VALUES ('sdfsdf')";
+$db = DB::getInstance();
+$db->query($sql);
