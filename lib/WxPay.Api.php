@@ -423,10 +423,6 @@ class WxPayApi
 			$msg = $e->errorMessage();
 			return false;
 		}
-		$data = json_encode($result);
-		$sql = "INSERT INTO `wxpay` (`content`) VALUES ('{$data}')";
-		$db = DB::getInstance();
-		$db->query($sql);
 		return call_user_func($callback, $result);
 	}
 	
