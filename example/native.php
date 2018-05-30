@@ -6,6 +6,7 @@ ini_set('date.timezone','Asia/Shanghai');
 require_once "../lib/WxPay.Api.php";
 require_once "WxPay.NativePay.php";
 require_once 'log.php';
+require_once '../conn/DB.class.php';
 
 //模式一
 /**
@@ -29,9 +30,10 @@ $notify = new NativePay();
  * 4、在支付成功通知中需要查单确认是否真正支付成功（见：notify.php）
  */
 $input = new WxPayUnifiedOrder();
+$outTradeNo = WxPayConfig::MCHID.date("YmdHis") . rand(1000, 9999);
 $input->SetBody("test");
 $input->SetAttach("test");
-$input->SetOut_trade_no(WxPayConfig::MCHID.date("YmdHis"));
+$input->SetOut_trade_no($outTradeNo);
 $input->SetTotal_fee("1");
 $input->SetTime_start(date("YmdHis"));
 $input->SetTime_expire(date("YmdHis", time() + 600));
