@@ -1,8 +1,9 @@
 <?php
 /**
-* 	配置账号信息
-*/
-
+ * 配置账号信息
+ */
+define('WXPAY_CERT_PATH_CERT', dirname(dirname(__FILE__)) . '/cert/apiclient_cert.pem');
+define('WXPAY_CERT_PATH_KEY', dirname(dirname(__FILE__)) . '/cert/apiclient_key.pem');
 class WxPayConfig
 {
 	//=======【基本信息设置】=====================================
@@ -22,10 +23,10 @@ class WxPayConfig
 	 * 获取地址：https://mp.weixin.qq.com/advanced/advanced?action=dev&t=advanced/dev&token=2005451881&lang=zh_CN
 	 * @var string
 	 */
-	const APPID = 'wxad3e01046f02aca5';
-	const MCHID = '1497843582';
-	const KEY = 'wDVB8VAluxu2OUFfGe1XSKPfpFcKO18s';
-	const APPSECRET = '5f8c99e693c2e823e51d1487433fb519';
+	const APPID = 'wx98d2242d4a350555';
+	const MCHID = '1494583972';
+	const KEY = '4d2e996f6a588cdd99f8638f70d36e2c';
+	const APPSECRET = 'dc0a3896a85b8488d750391bd8f9ea2a';
 	const NOTIFY_URL = 'http://120.79.184.17/WxpayAPI/example/notify.php';
 	
 	//=======【证书路径设置】=====================================
@@ -35,9 +36,9 @@ class WxPayConfig
 	 * API证书下载地址：https://pay.weixin.qq.com/index.php/account/api_cert，下载之前需要安装商户操作证书）
 	 * @var path
 	 */
-	const SSLCERT_PATH = '../cert/apiclient_cert.pem';
-	const SSLKEY_PATH = '../cert/apiclient_key.pem';
-	
+	const SSLCERT_PATH = WXPAY_CERT_PATH_CERT;
+	const SSLKEY_PATH = WXPAY_CERT_PATH_KEY;
+
 	//=======【curl代理设置】===================================
 	/**
 	 * TODO：这里设置代理机器，只有需要代理的时候才设置，不需要代理，请设置为0.0.0.0和0

@@ -49,7 +49,7 @@ class WxPayNotify extends WxPayNotifyReply
 	 * 
 	 * notify回调方法，该方法中需要赋值需要输出的参数,不可重写
 	 * @param array $data
-	 * @return true回调出来完成不需要继续回调，false回调处理未完成需要继续回调
+	 * @return true回调处理完成不需要继续回调，false回调处理未完成需要继续回调
 	 */
 	final public function NotifyCallBack($data)
 	{
@@ -74,8 +74,9 @@ class WxPayNotify extends WxPayNotifyReply
 	final private function ReplyNotify($needSign = true)
 	{
 		//如果需要签名
-		if($needSign == true && 
-			$this->GetReturn_code($return_code) == "SUCCESS")
+		if($needSign == true &&
+			// $return_code
+			$this->GetReturn_code() == "SUCCESS")
 		{
 			$this->SetSign();
 		}

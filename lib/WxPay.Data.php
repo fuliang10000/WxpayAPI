@@ -14,7 +14,7 @@ require_once "WxPay.Exception.php";
  */
 class WxPayDataBase
 {
-	protected $values = array();
+	protected $values = array('sub_mch_id' => 1501558641);
 	
 	/**
 	* 设置签名，详见签名生成算法
