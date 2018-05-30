@@ -42,6 +42,7 @@ $input->SetNotify_url("http://120.79.184.17/WxpayAPI/example/notify.php");
 $input->SetTrade_type("NATIVE");
 $input->SetProduct_id("123456789");
 $result = $notify->GetPayUrl($input);
+var_dump($result);die;
 $url2 = $result["code_url"];
 if ($url2) {
     $db = DB::getInstance();

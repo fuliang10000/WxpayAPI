@@ -24,44 +24,48 @@ class WxPayApi
 	public static function unifiedOrder($inputObj, $timeOut = 6)
 	{
 		$url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
-		//检测必填参数
-		if(!$inputObj->IsOut_trade_noSet()) {
-			throw new WxPayException("缺少统一支付接口必填参数out_trade_no！");
-		}else if(!$inputObj->IsBodySet()){
-			throw new WxPayException("缺少统一支付接口必填参数body！");
-		}else if(!$inputObj->IsTotal_feeSet()) {
-			throw new WxPayException("缺少统一支付接口必填参数total_fee！");
-		}else if(!$inputObj->IsTrade_typeSet()) {
-			throw new WxPayException("缺少统一支付接口必填参数trade_type！");
+		try {
+			//检测必填参数
+			if(!$inputObj->IsOut_trade_noSet()) {
+				throw new WxPayException("缺少统一支付接口必填参数out_trade_no！");
+			}else if(!$inputObj->IsBodySet()){
+				throw new WxPayException("缺少统一支付接口必填参数body！");
+			}else if(!$inputObj->IsTotal_feeSet()) {
+				throw new WxPayException("缺少统一支付接口必填参数total_fee！");
+			}else if(!$inputObj->IsTrade_typeSet()) {
+				throw new WxPayException("缺少统一支付接口必填参数trade_type！");
+			}
+
+			//关联参数
+			if($inputObj->GetTrade_type() == "JSAPI" && !$inputObj->IsOpenidSet()){
+				throw new WxPayException("统一支付接口中，缺少必填参数openid！trade_type为JSAPI时，openid为必填参数！");
+			}
+			if($inputObj->GetTrade_type() == "NATIVE" && !$inputObj->IsProduct_idSet()){
+				throw new WxPayException("统一支付接口中，缺少必填参数product_id！trade_type为JSAPI时，product_id为必填参数！");
+			}
+
+			//异步通知url未设置，则使用配置文件中的url
+			if(!$inputObj->IsNotify_urlSet()){
+				$inputObj->SetNotify_url(WxPayConfig::NOTIFY_URL);//异步通知url
+			}
+
+			$inputObj->SetAppid(WxPayConfig::APPID);//公众账号ID
+			$inputObj->SetMch_id(WxPayConfig::MCHID);//商户号
+//			$inputObj->SetSpbill_create_ip($_SERVER['REMOTE_ADDR']);//终端ip
+			$inputObj->SetSpbill_create_ip(WxPayConfig::CURL_PROXY_HOST);//终端ip
+			$inputObj->SetNonce_str(self::getNonceStr());//随机字符串
+
+			//签名
+			$inputObj->SetSign();
+			$xml = $inputObj->ToXml();
+
+			$startTimeStamp = self::getMillisecond();//请求开始时间
+			$response = self::postXmlCurl($xml, $url, false, $timeOut);
+			$result = WxPayResults::Init($response);
+			self::reportCostTime($url, $startTimeStamp, $result);//上报请求花费时间
+		} catch (WxPayException $e) {
+			$result = ['success' => false, 'message' => $e->getMessage()];
 		}
-		
-		//关联参数
-		if($inputObj->GetTrade_type() == "JSAPI" && !$inputObj->IsOpenidSet()){
-			throw new WxPayException("统一支付接口中，缺少必填参数openid！trade_type为JSAPI时，openid为必填参数！");
-		}
-		if($inputObj->GetTrade_type() == "NATIVE" && !$inputObj->IsProduct_idSet()){
-			throw new WxPayException("统一支付接口中，缺少必填参数product_id！trade_type为JSAPI时，product_id为必填参数！");
-		}
-		
-		//异步通知url未设置，则使用配置文件中的url
-		if(!$inputObj->IsNotify_urlSet()){
-			$inputObj->SetNotify_url(WxPayConfig::NOTIFY_URL);//异步通知url
-		}
-		
-		$inputObj->SetAppid(WxPayConfig::APPID);//公众账号ID
-		$inputObj->SetMch_id(WxPayConfig::MCHID);//商户号
-//		$inputObj->SetSpbill_create_ip($_SERVER['REMOTE_ADDR']);//终端ip
-		$inputObj->SetSpbill_create_ip(WxPayConfig::CURL_PROXY_HOST);//终端ip
-		$inputObj->SetNonce_str(self::getNonceStr());//随机字符串
-		
-		//签名
-		$inputObj->SetSign();
-		$xml = $inputObj->ToXml();
-		
-		$startTimeStamp = self::getMillisecond();//请求开始时间
-		$response = self::postXmlCurl($xml, $url, false, $timeOut);
-		$result = WxPayResults::Init($response);
-		self::reportCostTime($url, $startTimeStamp, $result);//上报请求花费时间
 		
 		return $result;
 	}
@@ -523,7 +527,6 @@ class WxPayApi
 	 */
 	private static function postXmlCurl($xml, $url, $useCert = false, $second = 30)
 	{
-		echo 11;die;
 		$ch = curl_init();
 		//设置超时
 		curl_setopt($ch, CURLOPT_TIMEOUT, $second);
