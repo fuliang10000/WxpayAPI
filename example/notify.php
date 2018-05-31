@@ -33,10 +33,6 @@ class PayNotifyCallBack extends WxPayNotify
 	//重写回调处理函数
 	public function NotifyProcess($data, &$msg)
 	{
-		$data = json_encode($data);
-		$sql = "INSERT INTO `wxpay` (`content`) VALUES ('sdfsdf')";
-		$db = DB::getInstance();
-		$db->query($sql);
 		Log::DEBUG("call back:" . json_encode($data));
 		$notfiyOutput = array();
 		
@@ -52,6 +48,10 @@ class PayNotifyCallBack extends WxPayNotify
 		return true;
 	}
 }
+//$data = json_encode($data);
+$sql = "INSERT INTO `wxpay` (`content`) VALUES ('sdfsdf')";
+$db = DB::getInstance();
+$db->query($sql);
 Log::DEBUG("begin notify");
 $notify = new PayNotifyCallBack();
 $notify->Handle(false);

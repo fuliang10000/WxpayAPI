@@ -23,10 +23,17 @@ class WxPayConfig
 	 * 获取地址：https://mp.weixin.qq.com/advanced/advanced?action=dev&t=advanced/dev&token=2005451881&lang=zh_CN
 	 * @var string
 	 */
+	// 成都云玺
 	const APPID = 'wx98d2242d4a350555';
 	const MCHID = '1494583972';
 	const KEY = '4d2e996f6a588cdd99f8638f70d36e2c';
 	const APPSECRET = 'dc0a3896a85b8488d750391bd8f9ea2a';
+
+	// 仟互文化
+//	const APPID = 'wxad3e01046f02aca5';
+//	const MCHID = '1497843582';
+//	const KEY = 'wDVB8VAluxu2OUFfGe1XSKPfpFcKO18s';
+//	const APPSECRET = '5f8c99e693c2e823e51d1487433fb519';
 	const NOTIFY_URL = 'http://120.79.184.17/WxpayAPI/example/notify.php';
 	
 	//=======【证书路径设置】=====================================
